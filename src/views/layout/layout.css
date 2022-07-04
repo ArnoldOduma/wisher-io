@@ -1,0 +1,29 @@
+.layout-cont{
+    width: 100%;
+    box-sizing: border-box;
+}
+.layout-cont > div {
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+.layout-cont > nav {
+    z-index: 10000;
+    position: absolute;
+    bottom: 0p;
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+}
+.layout-cont > nav div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.layout-cont > nav img{
+    font-size: 10px;
+    width: 30px;
+}

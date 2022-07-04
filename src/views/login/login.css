@@ -1,0 +1,38 @@
+.login-cont {
+  height: 100%;
+  text-align: center;
+  margin: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-40%);
+}
+.login-cont h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 48px;
+  color: #2daebc;
+}
+
+.login-cont>section {
+  margin: 40px 0;
+}
+
+
+.primary-form-input {
+}
+
+.or{
+    color: #ff9e29;
+    display: inline-block;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.text-normal > .link {
+  border-bottom: none;
+  text-decoration: none;
+  color: #ff9e29;
+}
