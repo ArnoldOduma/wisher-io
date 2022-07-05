@@ -1,11 +1,14 @@
 .login-cont {
   height: 100%;
+  width: 500px;
+  max-width: 100%;
   text-align: center;
-  margin: 20px;
+  padding: 0 20px;
   box-sizing: border-box;
   position: absolute;
   top: 50%;
-  transform: translateY(-40%);
+  left: 50%;
+  transform: translate(-50%, -40%);
 }
 .login-cont h2 {
   font-family: "Poppins";

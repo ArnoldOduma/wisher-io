@@ -27,10 +27,10 @@
 .add-wish-img img {
   width: 30px;
 }
-.add-wish-label{
-    text-align: left;
-    width: 100%;
-    display: block;
+.add-wish-label {
+  text-align: left;
+  width: 100%;
+  display: block;
 }
 
 .add-wish-input {
@@ -47,7 +47,7 @@
 .radio-cont {
   border: 1px dashed #f9c80e;
   border-radius: 10px;
-  padding: 10px 10px ;
+  padding: 10px 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -66,11 +66,27 @@
 
 .form-control input[type="radio"] {
   width: 20px;
-  height: 20px
+  height: 20px;
 }
 
-.add-wish-cont button{
-    margin-top: 20px;
-    width: 200px;
-    display: inline-block;
+.add-wish-cont button {
+  margin-top: 20px;
+  width: 200px;
+  display: inline-block;
+  cursor: pointer;
+}
+.add-wish-cont button:invalid {
+  background-color: aliceblue;
+}
+
+.hide-error {
+  display: none;
+}
+
+.has-error {
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: red;
+  font-size: 12px;
 }

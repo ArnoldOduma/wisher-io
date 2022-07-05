@@ -21,7 +21,7 @@ function Login() {
                     <p className='text-normal'>Don't have an account ?
                         <Link to="/create-account" className='link'>  Create Account</Link>
                     </p>
-
+                    <br />
                     <Link to="/home" >
                         <button type='submit' className="btn btn-primary">Login</button>
                     </Link>
