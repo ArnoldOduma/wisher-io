@@ -1,92 +1,121 @@
 .add-wish-cont {
-  background-color: #fff;
-  height: 100vh;
-  padding: 20px;
-  text-align: center;
+    background-color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
 }
 
 .add-wish-cont > h4 {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  text-align: left;
-  width: 100%;
-  color: #ff9e29;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: left;
+    width: 100%;
+    color: #ff9e29;
 }
 
 .add-wish-img {
-  border: 1px dashed #f9c80e;
-  border-radius: 10px;
-  border-spacing: 2px;
-  text-align: center;
-  padding: 40px 0;
-  margin-top: 15px;
-  margin-bottom: 15px;
+    border: 1px dashed #f9c80e;
+    border-radius: 10px;
+    border-spacing: 2px;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .add-wish-img img {
-  width: 30px;
+    width: 30px;
+    cursor: pointer;
 }
+
+.add-wish-img input {
+    display: none;
+}
+
+.img-preview {
+    padding: 10px 0;
+}
+
+.img-preview img {
+    width: 50%;
+}
+
+.img-preview button {
+    padding: 5px;
+    width: auto;
+    border: none;
+    border-radius: 50px;
+}
+
+.hidden {
+    display: none;
+}
+
 .add-wish-label {
-  text-align: left;
-  width: 100%;
-  display: block;
+    text-align: left;
+    width: 100%;
+    display: block;
 }
 
 .add-wish-input {
-  border: none;
-  border-bottom: 1px solid rgba(224, 141, 172, 0.5);
-  width: 100%;
-  font-size: 14px;
-  padding: 10px 10px;
-  margin: 15px 0;
+    border: none;
+    border-bottom: 1px solid rgba(224, 141, 172, 0.5);
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 10px;
+    margin: 15px 0;
 }
+
 .add-wish-input:focus {
-  outline: none;
+    outline: none;
 }
+
 .radio-cont {
-  border: 1px dashed #f9c80e;
-  border-radius: 10px;
-  padding: 10px 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 10px;
+    border: 1px dashed #f9c80e;
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
 }
+
 .form-control {
-  background: rgba(224, 141, 172, 0.17);
-  padding: 10px 20px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+    background: rgba(224, 141, 172, 0.17);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .form-control input[type="radio"] {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .add-wish-cont button {
-  margin-top: 20px;
-  width: 200px;
-  display: inline-block;
-  cursor: pointer;
+    margin-top: 20px;
+    width: 200px;
+    display: inline-block;
+    cursor: pointer;
 }
+
 .add-wish-cont button:invalid {
-  background-color: aliceblue;
+    background-color: aliceblue;
 }
 
 .hide-error {
-  display: none;
+    display: none;
 }
 
 .has-error {
-  display: block;
-  width: 100%;
-  text-align: left;
-  color: red;
-  font-size: 12px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: red;
+    font-size: 12px;
 }

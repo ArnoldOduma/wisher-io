@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // import logo from '../../logo.svg';
 import './create-account.css';
 
-function CreateAccount() {
+const CreateAccount = () => {
     return (
         <div className="sign-up-cont">
             <h2>Create Account</h2>

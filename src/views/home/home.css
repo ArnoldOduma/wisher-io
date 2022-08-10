@@ -49,7 +49,7 @@
 .list-sec > div {
   overflow-x: auto;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   gap: 10px;
   

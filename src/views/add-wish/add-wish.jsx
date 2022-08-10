@@ -1,33 +1,37 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './add-wish.css';
 import plus from '../../icons/plus-outline.svg';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useFirestore} from "react-redux-firebase";
+import {useSelector} from "react-redux";
 
 
 class AddWish extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            location: '',
-            price: '',
-            category: '',
-            nameValid: false,
-            locationValid: false,
-            priceValid: false,
-            categoryValid: false,
-            formValid: false,
-            formErrors: { name: '', location: '', price: '', category: '' },
-        };
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         name: '',
+    //         location: '',
+    //         price: '',
+    //         category: '',
+    //         nameValid: false,
+    //         locationValid: false,
+    //         priceValid: false,
+    //         categoryValid: false,
+    //         formValid: false,
+    //         formErrors: {name: '', location: '', price: '', category: ''},
+    //     };
+    // }
 
     handleUserInput = (e) => {
         const name = e.target.name;
-        this.setState({ [name]: e.target.value }, () => { this.validateField(name, e.target.value) });
+        this.setState({[name]: e.target.value}, () => {
+            this.validateField(name, e.target.value)
+        });
 
     }
 
@@ -78,7 +82,7 @@ class AddWish extends Component {
 
     validateForm() {
         console.log(this.state.formErrors);
-        this.setState({ formValid: this.state.nameValid && this.state.locationValid && this.state.priceValid && this.state.categoryValid });
+        this.setState({formValid: this.state.nameValid && this.state.locationValid && this.state.priceValid && this.state.categoryValid});
     }
 
     errorClass(error) {
@@ -88,31 +92,56 @@ class AddWish extends Component {
 
     createNewWish = () => {
         if (!this.state.formValid) {
-            toast.warn('Fill all fields to procced', {
+            toast.warn('Fill all fields to proceed', {
                 position: 'top-center'
             })
             return;
         }
 
-        const db = firebase.firestore();
-        console.log(this.state.name);
-        db.collection('wish-lists')
-            .doc(this.state.name)
-            .set({
+        const firestore = useFirestore();
+        const uid = useSelector((state) => state.firebase.auth);
+        firestore
+            .collection('users')
+            .doc(uid)
+            .collection('wish-lists')
+            .add({
                 name: this.state.name,
                 location: this.state.location,
                 price: this.state.price,
                 category: this.state.category,
-            }).then(() => {
-                toast.success('Your wish was created successfully', {
-                    position: 'top-center'
-                })
-            }).catch(error => {
-                console.error("Error writing document: ", error);
+            })
+            .then((docRef) => {
+                docRef.update({
+                    wishID: docRef.id
+                }).then();
+                toast.success('Wish was created')
+            })
+            .catch(err => {
+                console.log(err)
                 toast.error('Error creating wishlist', {
                     position: 'top-center'
                 })
             });
+
+        // const db = firebase.firestore();
+        // console.log(this.state.name);
+        // db.collection('wish-lists')
+        //     .doc(this.state.name)
+        //     .set({
+        //         name: this.state.name,
+        //         location: this.state.location,
+        //         price: this.state.price,
+        //         category: this.state.category,
+        //     }).then(() => {
+        //         toast.success('Your wish was created successfully', {
+        //             position: 'top-center'
+        //         })
+        //     }).catch(error => {
+        //         console.error("Error writing document: ", error);
+        //         toast.error('Error creating wishlist', {
+        //             position: 'top-center'
+        //         })
+        //     });
     };
 
 
@@ -123,59 +152,61 @@ class AddWish extends Component {
                 <h4>Add to list</h4>
                 <div className='add-wish-img'>
                     <p>Upload Image</p>
-                    <img src={plus} alt='Home' />
+                    <img src={plus} alt='Home'/>
                 </div>
                 <div>
                     <label className='add-wish-label'>What would you like ?</label>
                     <i className={`hide-error ${this.errorClass(this.state.formErrors.name)}`}>Name Is required</i>
                     <input className='add-wish-input' type='text' name='name'
-                        value={this.state.name}
-                        onChange={this.handleUserInput}
-                        onFocus={this.handleUserInput}
+                           value={this.state.name}
+                           onChange={this.handleUserInput}
+                           onFocus={this.handleUserInput}
                     ></input>
 
                     <label className='add-wish-label'>Where can one get it ?</label>
-                    <i className={`hide-error ${this.errorClass(this.state.formErrors.location)}`}>Location Is required</i>
+                    <i className={`hide-error ${this.errorClass(this.state.formErrors.location)}`}>Location Is
+                        required</i>
                     <input className='add-wish-input' type='text' name='location'
-                        value={this.state.location}
-                        onChange={this.handleUserInput}
-                        onFocus={this.handleUserInput}></input>
+                           value={this.state.location}
+                           onChange={this.handleUserInput}
+                           onFocus={this.handleUserInput}></input>
                     <label className='add-wish-label'>Whats the approximate cost ?</label>
                     <i className={`hide-error ${this.errorClass(this.state.formErrors.price)}`}>Price Is required</i>
                     <input className='add-wish-input' type='number' name='price'
-                        value={this.state.price}
-                        onChange={this.handleUserInput}
-                        onFocus={this.handleUserInput}></input>
+                           value={this.state.price}
+                           onChange={this.handleUserInput}
+                           onFocus={this.handleUserInput}></input>
                 </div>
                 <div className='radio-cont'>
                     <label className='add-wish-label'>Whats the category ?</label>
-                    <i className={`hide-error ${this.errorClass(this.state.formErrors.category)}`}>Category Is required</i>
-                    <label class="form-control">
+                    <i className={`hide-error ${this.errorClass(this.state.formErrors.category)}`}>Category Is
+                        required</i>
+                    <label className="form-control">
                         <input type="radio" name="category"
-                            value='RESTAURANTS'
-                            onChange={this.handleUserInput}
-                            onFocus={this.handleUserInput} />
+                               value='RESTAURANTS'
+                               onChange={this.handleUserInput}
+                               onFocus={this.handleUserInput}/>
                         Restaurants
                     </label>
-                    <label class="form-control">
+                    <label className="form-control">
                         <input type="radio" name="category"
-                            value='TRAVEL'
-                            onChange={this.handleUserInput}
-                            onFocus={this.handleUserInput} />
+                               value='TRAVEL'
+                               onChange={this.handleUserInput}
+                               onFocus={this.handleUserInput}/>
                         Travel
                     </label>
-                    <label class="form-control">
+                    <label className="form-control">
                         <input type="radio" name="category"
-                            value='MOVIES'
-                            onChange={this.handleUserInput}
-                            onFocus={this.handleUserInput} />
+                               value='MOVIES'
+                               onChange={this.handleUserInput}
+                               onFocus={this.handleUserInput}/>
                         Movies
                     </label>
-                    <label class="form-control">
+                    <label className="form-control">
                         <input type="radio" name="category"
-                            value='SHOPPING'
-                            onChange={this.handleUserInput}
-                            onFocus={this.handleUserInput} />
+                               value='SHOPPING'
+                               onChange={this.handleUserInput}
+                               onFocus={this.handleUserInput}/>
                         Shopping
                     </label>
                 </div>

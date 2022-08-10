@@ -1,6 +1,4 @@
 import React from 'react';
-import Login from '../login/login';
-// import logo from '../../logo.svg';
 import './home.css';
 
 function Home() {

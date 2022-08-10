@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Home from '../home/home';
 import './layout.css';
 import home from '../../icons/home-outline.svg';
 import person from '../../icons/person-outline.svg';
@@ -27,7 +26,7 @@ function Layout() {
                         <p>Add</p>
                     </div>
                 </Link>
-                <Link to="/login">
+                <Link to="">
                     <div>
                         <img src={person} alt='Profile' />
                         <p>Profile</p>
