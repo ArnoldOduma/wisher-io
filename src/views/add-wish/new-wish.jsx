@@ -2,9 +2,8 @@ import plus from "../../icons/plus-outline.svg";
 import React, {useState} from "react";
 import './add-wish.css';
 import {toast} from "react-toastify";
-import {useFirebase,} from "react-redux-firebase";
-import {useSelector, useStore} from "react-redux";
-import storage from "firebase/compat/app";
+import {useFirebase} from "react-redux-firebase";
+import {useSelector} from "react-redux";
 
 const NewWish = () => {
     const firebaseDB = useFirebase();
@@ -45,7 +44,7 @@ const NewWish = () => {
                 image: reader.result,
                 imageFile: file
             });
-        }.bind(this);
+        };
         console.log(file.name)
     }
 
@@ -119,7 +118,7 @@ const NewWish = () => {
     }
 
 
-    function createNewWish() {
+    async function createNewWish() {
         if (state.formValid) {
             toast.warn('Fill all fields to proceed', {
                 position: 'top-center'
@@ -127,8 +126,8 @@ const NewWish = () => {
             return;
         }
 
-        storageRef.put(state.imageFile);
-        storageRef.getDownloadURL()
+        await storageRef.put(state.imageFile).then();
+        await storageRef.getDownloadURL()
             .then(res => {
                 firebaseDB.ref('users/' + uid.uid + '/wish-lists')
                     .push({
